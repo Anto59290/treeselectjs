@@ -78,6 +78,7 @@ export class TreeselectList implements ITreeselectList {
   beforeSearchStateMap: BeforeSearchStateMap
   emptyListHtmlElement: HTMLElement | null
   srcElement: HTMLElement
+  parentContainer: HTMLElement
 
   // Callbacks
   inputCallback: (value: SelectedNodesType) => void
@@ -108,7 +109,8 @@ export class TreeselectList implements ITreeselectList {
     isBoostedRendering,
     inputCallback,
     arrowClickCallback,
-    mouseupCallback
+    mouseupCallback,
+    parentContainer
   }: ITreeselectListParams) {
     this.options = options
     this.value = value
@@ -141,6 +143,7 @@ export class TreeselectList implements ITreeselectList {
     this.inputCallback = inputCallback
     this.arrowClickCallback = arrowClickCallback
     this.mouseupCallback = mouseupCallback
+    this.parentContainer = parentContainer
   }
 
   // Public methods
@@ -245,6 +248,7 @@ export class TreeselectList implements ITreeselectList {
 
   // Private methods
   #updateListDOM() {
+    this.parentContainer?.dispatchEvent(new CustomEvent('update-dom'))
     updateDOM({
       optionsTreeMap: this.optionsTreeMap,
       emptyListHtmlElement: this.emptyListHtmlElement,

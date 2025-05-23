@@ -364,7 +364,8 @@ export default class Treeselect implements ITreeselect {
       iconElements: this.iconElements,
       inputCallback: (value) => this.#listInputListener(value),
       arrowClickCallback: (groupId, isClosed) => this.#listArrowClickListener(groupId, isClosed),
-      mouseupCallback: () => this.#treeselectInput?.focus()
+      mouseupCallback: () => this.#treeselectInput?.focus(),
+      parentContainer: container
     })
 
     const input = new TreeselectInput({

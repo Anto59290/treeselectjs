@@ -48,6 +48,7 @@ export interface ITreeselectListParams {
   inputCallback: (value: SelectedNodesType) => void
   arrowClickCallback: (groupId: ValueOptionType, isClosed: boolean) => void
   mouseupCallback: () => void
+  parentContainer: HTMLElement
 }
 
 export interface ITreeselectList extends ITreeselectListParams {
