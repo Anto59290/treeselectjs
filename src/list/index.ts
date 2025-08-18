@@ -20,7 +20,8 @@ import {
   hideShowChildrenOptions,
   updateBeforeSearchStateMap,
   updateOptionsMapBySearchState,
-  updateVisibleBySearchTreeItemOptions
+  updateVisibleBySearchTreeItemOptions,
+  removeDiacritics,
 } from './helpers/listVisibilityStateHelper'
 import { updateDOM, setAttributesFromHtmlAttr } from './helpers/domHelper'
 import { appendIconToElement } from '../svgIcons'
@@ -167,9 +168,8 @@ export class TreeselectList implements ITreeselectList {
     if (searchText === this.searchText) {
       return
     }
-
     const isStartOfSearching = this.searchText === '' && searchText !== ''
-    this.searchText = searchText
+    this.searchText = removeDiacritics(searchText).toLowerCase()
 
     if (isStartOfSearching) {
       // This loop need to save a isClose state before searching
