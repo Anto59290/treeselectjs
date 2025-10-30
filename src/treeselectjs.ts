@@ -631,6 +631,9 @@ export default class Treeselect implements ITreeselect {
   }
 
   focusWindowHandler(e: Event) {
+    if (e.target instanceof HTMLDialogElement && e.type === 'focus') {
+      return
+    }
     const isInsideClick =
       this.srcElement?.contains(e.target as HTMLElement) ||
       this.#treeselectList?.srcElement.contains(e.target as HTMLElement)
